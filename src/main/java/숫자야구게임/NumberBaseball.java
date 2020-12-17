@@ -9,21 +9,26 @@ class Solution{
         BALL,
         OUT
     }
+
+    int[] notOut(int[] computer, int[]user, int ui, int ci, int[] state){
+        if((ui==ci)||(user[ui]==computer[ui])){
+            state[Status.STRIKE.ordinal()]++;
+        }else {
+            state[Status.BALL.ordinal()]++;
+        }
+        return state;
+    }
+
     public int[] findAns(int[] computer, int[]user){
         int[] state=new int[3];
         boolean isOut=true;
         for(int ui=0;ui<3;ui++){
             for(int ci=0;ci<3;ci++){
                 if(user[ui]==computer[ci]){
-                    if((ui==ci)||(user[ui]==computer[ui])){
-                        state[Status.STRIKE.ordinal()]++;
-                    }else {
-                        state[Status.BALL.ordinal()]++;
-                    }
+                    state=notOut(computer, user, ui, ci, state);
                     isOut=false;
                     break;
                 }
-
             }
             if(isOut){
                 state[Status.OUT.ordinal()]++;
@@ -32,6 +37,7 @@ class Solution{
         }
         return state;
     }
+
     public int[] computerGenerator(){
         Random generator=new Random();
         int[] computer=new int[3];
@@ -40,6 +46,7 @@ class Solution{
         }
         return computer;
     }
+
     public void solution(int[] computer){
 
         int []user=new int[3];
@@ -69,6 +76,7 @@ class Solution{
                 System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임종료\n");
                 System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
                 choice=scan.nextInt();
+
                 if(choice==2){
                     System.out.println("게임을 종료합니다.\n");
                     return;
@@ -79,14 +87,14 @@ class Solution{
         }
     }
 }
+
 public class NumberBaseball {
     public static void main(String[] args){
         Solution solution=new Solution();
         int[]computer=solution.computerGenerator();
+        computer=new int[]{1,2,3};
         solution.solution(computer);
 
     }
-
-
 }
 
