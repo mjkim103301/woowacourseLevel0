@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8851972-4a3f-4259-bdf1-e6c0d2a4a498" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java" afterDir="false" />
     </list>
@@ -81,7 +80,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -92,13 +93,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="11" />
+          <line>34</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -108,6 +104,9 @@
         <watch expression="Status.BALL.ordinal()" language="JAVA" />
         <watch expression="Status.OUT.ordinal()" language="JAVA" />
         <watch expression="Status.OUT.ordinal()" language="JAVA" />
+        <watch expression="computer" language="JAVA" />
+        <watch expression="status" language="JAVA" />
+        <watch expression="state" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
