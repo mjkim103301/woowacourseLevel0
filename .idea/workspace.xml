@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8851972-4a3f-4259-bdf1-e6c0d2a4a498" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/자동차경주게임/RacingCar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +42,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.RacingCar">
     <configuration name="NumberBaseball" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="숫자야구게임.NumberBaseball" />
       <module name="우테코Level0.main" />
@@ -56,8 +56,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RacingCar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="자동차경주게임.RacingCar" />
+      <module name="우테코Level0.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="자동차경주게임.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RacingCar" />
         <item itemvalue="Application.NumberBaseball" />
       </list>
     </recent_temporary>
@@ -95,6 +109,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/숫자야구게임/NumberBaseball.java</url>
           <line>34</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/자동차경주게임/RacingCar.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
