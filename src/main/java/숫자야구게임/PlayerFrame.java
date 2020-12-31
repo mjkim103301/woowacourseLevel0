@@ -34,4 +34,5 @@ public abstract class PlayerFrame implements Player {
             status[i]=0;
         }
     }
+
 }

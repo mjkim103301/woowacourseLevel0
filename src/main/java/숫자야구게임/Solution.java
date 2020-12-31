@@ -80,7 +80,7 @@ public class Solution {
                 System.out.println("<승리!> 3개의 숫자를 모두 맞히셨습니다! 게임종료\n");
 
             }else if(who==Who.COMPUTER.ordinal()){
-                System.out.println("패배. 컴퓨터가 먼저 사용자의 숫자를 모두 맞혔습니다.");
+                System.out.println("<패배ㅠ> 컴퓨터가 먼저 사용자의 숫자를 모두 맞혔습니다.");
             }
 
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
@@ -105,6 +105,12 @@ public class Solution {
     public boolean computerTurn(){
         computer.setGuess();
         findAns(computer.getGuess(), user.getOwnNumber(), Who.COMPUTER.ordinal());
+        int[] status=computer.getStatus();
+        if(status[Status.OUT.ordinal()]==3){
+            computer.removeAllGuess();
+        }else if(status[Status.OUT.ordinal()]==0){
+            computer.removeOthers();
+        }
         return isFinish(Who.COMPUTER.ordinal());
     }
 
