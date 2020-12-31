@@ -109,7 +109,9 @@ public class Solution {
         if(status[Status.OUT.ordinal()]==3){
             computer.removeAllGuess();
         }else if(status[Status.OUT.ordinal()]==0){
-            computer.removeOthers();
+            if(computer.numberRange.size()>3){
+                computer.removeOthers();
+            }
         }
         return isFinish(Who.COMPUTER.ordinal());
     }
