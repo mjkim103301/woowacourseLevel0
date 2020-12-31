@@ -14,12 +14,12 @@ class Car{
 }
 class Solution{
     private static final int NUM_BOUND=10;
-    Scanner scanner=new Scanner(System.in);
-    ArrayList<Car> cars=new ArrayList<>();
-    int N;
-    int numberOfCars=0;
+    private Scanner scanner=new Scanner(System.in);
+    private ArrayList<Car> cars=new ArrayList<>();
+    private int N;
+    private int numberOfCars=0;
 
-    void init(String carNames) {
+    public void init(String carNames) {
         String carName;
         int division = -1;
         int lastDivision;

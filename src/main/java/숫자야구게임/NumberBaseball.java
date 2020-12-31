@@ -3,7 +3,7 @@ package 숫자야구게임;
 import java.util.Random;
 import java.util.Scanner;
 
-class Solution{
+class Solution2{
     private static final int NUM_BOUND=10;
     private static final int NUM_SIZE=3;
     private static final int ZERO_UNICODE=48;
@@ -18,16 +18,16 @@ class Solution{
         OUT
     }
 
-   public boolean getOutResult(int userIndex, int computerIndex){
-       if(user[userIndex]==computer[computerIndex]){
-           if(userIndex==computerIndex){
-               state[Status.STRIKE.ordinal()]++;
-           }else {
-               state[Status.BALL.ordinal()]++;
-           }
-           return false;
-       }
-       return true;
+    public boolean getOutResult(int userIndex, int computerIndex){
+        if(user[userIndex]==computer[computerIndex]){
+            if(userIndex==computerIndex){
+                state[Status.STRIKE.ordinal()]++;
+            }else {
+                state[Status.BALL.ordinal()]++;
+            }
+            return false;
+        }
+        return true;
     }
 
     public void findAns( ){
@@ -42,7 +42,7 @@ class Solution{
                 state[Status.OUT.ordinal()]++;
             }
         }
-     
+
     }
 
     public void computerGenerator() {
@@ -102,12 +102,9 @@ class Solution{
 
 public class NumberBaseball {
     public static void main(String[] args){
-        Solution solution=new Solution();
+        Solution2 solution=new Solution2();
         solution.computerGenerator();
         solution.solution();
 
     }
 }
-
-
-
