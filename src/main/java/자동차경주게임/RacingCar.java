@@ -11,13 +11,11 @@ class Car{
         this.location=location;
         this.random=random;
     }
-
 }
 class Solution{
     private static final int NUM_BOUND=10;
     Scanner scanner=new Scanner(System.in);
     ArrayList<Car> cars=new ArrayList<>();
-
     int N;
     int numberOfCars=0;
 
@@ -48,6 +46,7 @@ class Solution{
             }
         }
     }
+
     public void sort(){
         Collections.sort(cars, new Comparator<Car>() {
             @Override
@@ -88,7 +87,6 @@ class Solution{
                 System.out.print(", ");
             }
             System.out.print(cars.get(j).name);
-
         }
         System.out.println("가 최종 우승했습니다.");
     }
