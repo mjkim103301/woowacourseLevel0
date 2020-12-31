@@ -6,21 +6,23 @@ public class Solution {
     Computer computer;
     User user;
     enum Who{
-        user,
-        computer
+        USER,
+        COMPUTER
     }
     enum Status{
         STRIKE,
         BALL,
         OUT
-    };
+    }
+    
     public void setGuessStatus(int statusIndex, int who){
-        if(who==Who.user.ordinal()){
+        if(who==Who.USER.ordinal()){
             user.setStatus(statusIndex);
         }else{
             computer.setStatus(statusIndex);
         }
     }
+    
     public boolean getOutResult(int []guess, int guessIndex, int[]target, int targetIndex, int who){
         if(guess[guessIndex]==target[targetIndex]){
             if(guessIndex==targetIndex){
@@ -46,19 +48,9 @@ public class Solution {
                 setGuessStatus(Status.OUT.ordinal(), who);
             }
         }
-
     }
 
-    public boolean isFinish(int who){
-        int choice;
-        int[] state=new int[3];
-        if(who==Who.user.ordinal()){
-            state=user.getStatus();
-        }else if(who==Who.computer.ordinal()){
-            state=computer.getStatus();
-        }
-
-        Scanner scan=new Scanner(System.in);
+    public void printStatus(int[] state){
         if(state[Status.STRIKE.ordinal()]>0){
             System.out.print(state[Status.STRIKE.ordinal()]+"스트라이크 ");
         }
@@ -69,11 +61,25 @@ public class Solution {
             System.out.print(state[Status.OUT.ordinal()]+"아웃 ");
         }
         System.out.println("\n");
+    }
+
+    public boolean isFinish(int who){
+        int choice;
+        int[] state=new int[3];
+        if(who==Who.USER.ordinal()){
+            state=user.getStatus();
+        }else if(who==Who.COMPUTER.ordinal()){
+            state=computer.getStatus();
+        }
+
+        Scanner scan=new Scanner(System.in);
+        printStatus(state);
+
         if(state[Status.STRIKE.ordinal()]==3){
-            if(who==Who.user.ordinal()){
+            if(who==Who.USER.ordinal()){
                 System.out.println("<승리!> 3개의 숫자를 모두 맞히셨습니다! 게임종료\n");
 
-            }else if(who==Who.computer.ordinal()){
+            }else if(who==Who.COMPUTER.ordinal()){
                 System.out.println("패배. 컴퓨터가 먼저 사용자의 숫자를 모두 맞혔습니다.");
             }
 
@@ -86,31 +92,23 @@ public class Solution {
             }else{
                 new Solution();
             }
-
         }
         return false;
     }
 
     public boolean userTurn(){
         user.setGuess();
-        findAns(user.getGuess(), computer.getOwnNumber(), Who.user.ordinal());
-        return isFinish(Who.user.ordinal());
+        findAns(user.getGuess(), computer.getOwnNumber(), Who.USER.ordinal());
+        return isFinish(Who.USER.ordinal());
     }
 
     public boolean computerTurn(){
         computer.setGuess();
-        findAns(computer.getGuess(), user.getOwnNumber(), Who.computer.ordinal());
-        return isFinish(Who.computer.ordinal());
+        findAns(computer.getGuess(), user.getOwnNumber(), Who.COMPUTER.ordinal());
+        return isFinish(Who.COMPUTER.ordinal());
     }
 
-    public Solution() {
-        System.out.println("게임을 시작합니다.");
-        computer = new Computer();
-        user = new User();
-
-        computer.setOwnNumber();
-        user.setOwnNumber();
-
+    public void start(){
         while (true) {
             if(userTurn()==true){
                 break;
@@ -121,7 +119,15 @@ public class Solution {
             user.clear();
             computer.clear();
         }
+        System.out.println("프로그램이 종료됐습니다.");
+    }
 
-        System.out.println("게임이 종료됐습니다.");
+    public Solution() {
+        System.out.println("게임을 시작합니다.");
+        computer = new Computer();
+        user = new User();
+
+        computer.setOwnNumber();
+        user.setOwnNumber();
     }
 }
