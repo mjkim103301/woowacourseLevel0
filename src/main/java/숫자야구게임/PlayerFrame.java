@@ -12,7 +12,6 @@ public abstract class PlayerFrame implements Player {
         return ownNumber;
     }
 
-
     public void setStatus(int i){
         status[i]++;
     }

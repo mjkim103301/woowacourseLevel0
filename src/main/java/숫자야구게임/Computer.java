@@ -16,6 +16,7 @@ public class Computer extends PlayerFrame {
             computerRange.add(i);
         }
     }
+
     @Override
     public void setOwnNumber() {
         for (int i = 0; i < 3; i++) {
@@ -63,12 +64,14 @@ public class Computer extends PlayerFrame {
         }
         System.out.println("값을 추측했습니다.");
     }
+
     public void removeAllGuess(){
         for(int i=0;i<3;i++){
             int num=guess[i];
             numberRange.remove((Integer) num);
         }
     }
+
     public void removeOthers(){
         int []remain=guess.clone();
         numberRange.clear();
