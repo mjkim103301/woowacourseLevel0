@@ -6,12 +6,14 @@ class Car{
     String name;
     int location;
     int random;
+
     public Car(String name, int location, int random){
         this.name=name;
         this.location=location;
         this.random=random;
     }
 }
+
 class Solution{
     private static final int NUM_BOUND=10;
     private Scanner scanner=new Scanner(System.in);
@@ -58,7 +60,6 @@ class Solution{
 
     public int findWinner(){
         int winnerIndex=0;
-
         sort();
         for(int i=1;i<numberOfCars;i++){
             if(cars.get(winnerIndex).location==cars.get(i).location){
@@ -96,7 +97,6 @@ class Solution{
         int winnerIndex;
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         carNames = scanner.nextLine();
-
         init(carNames);
         System.out.println("\n시도할 회수는 몇회인가요?");
         N=scanner.nextInt();
