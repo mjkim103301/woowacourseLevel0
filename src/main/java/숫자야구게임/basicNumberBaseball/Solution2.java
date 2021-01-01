@@ -1,4 +1,4 @@
-package 숫자야구게임;
+package 숫자야구게임.basicNumberBaseball;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ class Solution2{
         OUT
     }
 
-    public boolean getOutResult(int userIndex, int computerIndex){
+    private boolean getOutResult(int userIndex, int computerIndex){
         if(user[userIndex]==computer[computerIndex]){
             if(userIndex==computerIndex){
                 state[Status.STRIKE.ordinal()]++;
@@ -30,13 +30,13 @@ class Solution2{
         return true;
     }
 
-    public void findAns( ){
+    private void findAns(){
         state=new int[NUM_SIZE];
         boolean isOut=true;
         for(int ui=0;ui<NUM_SIZE;ui++){
             for(int ci=0;ci<NUM_SIZE;ci++){
                 isOut=getOutResult(ui, ci);
-                if(isOut==false)break;
+                if(!isOut)break;
             }
             if(isOut){
                 state[Status.OUT.ordinal()]++;
@@ -45,14 +45,15 @@ class Solution2{
 
     }
 
-    public void computerGenerator() {
+    void computerGenerator() {
         Random generator = new Random();
         computer = new int[NUM_SIZE];
         for (int i = 0; i < NUM_SIZE; i++) {
             computer[i] = generator.nextInt(NUM_BOUND);
         }
     }
-    public boolean isFinish(){
+
+    private boolean isFinish(){
         int choice;
         Scanner scan=new Scanner(System.in);
         if(state[Status.STRIKE.ordinal()]>0){
@@ -79,7 +80,8 @@ class Solution2{
         }
         return false;
     }
-    public void solution(){
+
+    void solution(){
 
         user=new int[NUM_SIZE];
         String userNumber;
@@ -92,19 +94,9 @@ class Solution2{
                 user[i]=userNumber.charAt(i)-ZERO_UNICODE;
             }
             findAns();
-            if(isFinish()==true){
+            if(isFinish()){
                 return;
             }
-
         }
-    }
-}
-
-public class NumberBaseball {
-    public static void main(String[] args){
-        Solution2 solution=new Solution2();
-        solution.computerGenerator();
-        solution.solution();
-
     }
 }

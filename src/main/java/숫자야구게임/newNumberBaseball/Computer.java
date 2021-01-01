@@ -1,4 +1,4 @@
-package 숫자야구게임;
+package 숫자야구게임.newNumberBaseball;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ public class Computer extends PlayerFrame {
     private HashMap<String, Integer> hash=new HashMap<>();
     private ArrayList<Integer> computerRange=new ArrayList<>();
 
-    public Computer(){
+    Computer(){
         for(int i=0;i<10;i++){
             numberRange.add(i);
             computerRange.add(i);
@@ -32,7 +32,7 @@ public class Computer extends PlayerFrame {
         System.out.println();
     }
 
-    public String makeCandidates(){
+    private String makeCandidates(){
         String candidate="";
         ArrayList<Integer> numberCandidates = (ArrayList<Integer>) numberRange.clone();
         for (int i = 0; i < NUM_COUNT; i++) {
@@ -66,14 +66,14 @@ public class Computer extends PlayerFrame {
         System.out.println("값을 추측했습니다.");
     }
 
-    public void removeAllGuess(){
+    void removeAllGuess(){
         for(int i=0;i<NUM_COUNT;i++){
             int num=guess[i];
             numberRange.remove((Integer) num);
         }
     }
 
-    public void removeOthers(){
+    void removeOthers(){
         int []remain;
         if(numberRange.size()<=NUM_COUNT){
             return;

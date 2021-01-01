@@ -1,9 +1,9 @@
-package 숫자야구게임;
+package 숫자야구게임.newNumberBaseball;
 
 import java.util.Scanner;
-import static 숫자야구게임.PlayerFrame.NUM_COUNT;
+import static 숫자야구게임.newNumberBaseball.PlayerFrame.NUM_COUNT;
 
-public class Solution {
+class Solution {
     private Computer computer;
     private User user;
     private Scanner scan=new Scanner(System.in);
@@ -42,7 +42,7 @@ public class Solution {
         for(int guessIndex=0;guessIndex<NUM_COUNT;guessIndex++){
             for(int targetIndex=0;targetIndex<NUM_COUNT;targetIndex++){
                 isOut=getOutResult(guess, guessIndex, target, targetIndex, who);
-                if(isOut==false){
+                if(!isOut){
                     break;
                 }
             }
@@ -116,12 +116,12 @@ public class Solution {
         return isFinish(Who.COMPUTER.ordinal());
     }
 
-    public void start(){
+    void start(){
         while (true) {
-            if(userTurn()==true){
+            if(userTurn()){
                 break;
             }
-            if(computerTurn()==true){
+            if(computerTurn()){
                 break;
             }
             user.clear();
@@ -130,7 +130,7 @@ public class Solution {
         System.out.println("프로그램이 종료됐습니다.");
     }
 
-    public Solution() {
+    Solution() {
         System.out.println("게임을 시작합니다.");
         computer = new Computer();
         user = new User();
