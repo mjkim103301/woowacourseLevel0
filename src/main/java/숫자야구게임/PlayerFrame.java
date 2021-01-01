@@ -1,9 +1,10 @@
 package 숫자야구게임;
 
 public abstract class PlayerFrame implements Player {
-    int[] ownNumber = new int[3];
-    int[] status=new int[3];
-    int[] guess=new int[3];
+    static final int NUM_COUNT=3;
+    int[] ownNumber = new int[NUM_COUNT];
+    int[] status=new int[NUM_COUNT];
+    int[] guess=new int[NUM_COUNT];
 
     @Override
     public abstract void setOwnNumber();
@@ -28,10 +29,7 @@ public abstract class PlayerFrame implements Player {
     }
 
     public void clear() {
-        for(int i=0;i<3;i++){
-            guess[i]=0;
-            status[i]=0;
-        }
+        guess=new int[NUM_COUNT];
+        status=new int[NUM_COUNT];
     }
-
 }

@@ -1,12 +1,13 @@
 package 숫자야구게임;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
 public class Computer extends PlayerFrame {
     private Random generator = new Random();
-    ArrayList<Integer> numberRange= new ArrayList<>();
+    private ArrayList<Integer> numberRange= new ArrayList<>();
     private HashMap<String, Integer> hash=new HashMap<>();
     private ArrayList<Integer> computerRange=new ArrayList<>();
 
@@ -19,13 +20,13 @@ public class Computer extends PlayerFrame {
 
     @Override
     public void setOwnNumber() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUM_COUNT; i++) {
             int index=generator.nextInt(computerRange.size());
             ownNumber[i] = computerRange.get(index);
             computerRange.remove(index);
         }
         System.out.println("컴퓨터 숫자: ");
-        for(int i=0;i<3;i++){
+        for(int i=0;i<NUM_COUNT;i++){
             System.out.print(ownNumber[i]+" ");
         }
         System.out.println();
@@ -34,7 +35,7 @@ public class Computer extends PlayerFrame {
     public String makeCandidates(){
         String candidate="";
         ArrayList<Integer> numberCandidates = (ArrayList<Integer>) numberRange.clone();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < NUM_COUNT; i++) {
             int index=generator.nextInt(numberCandidates.size());
             guess[i] = numberCandidates.get(index);
             numberCandidates.remove(index);
@@ -59,23 +60,28 @@ public class Computer extends PlayerFrame {
                 break;
             }
         }
-        for(int i=0;i<3;i++){
+        for(int i=0;i<NUM_COUNT;i++){
             System.out.print(guess[i]+" ");
         }
         System.out.println("값을 추측했습니다.");
     }
 
     public void removeAllGuess(){
-        for(int i=0;i<3;i++){
+        for(int i=0;i<NUM_COUNT;i++){
             int num=guess[i];
             numberRange.remove((Integer) num);
         }
     }
 
     public void removeOthers(){
-        int []remain=guess.clone();
+        int []remain;
+        if(numberRange.size()<=NUM_COUNT){
+            return;
+        }
+        remain=guess.clone();
+        Arrays.sort(remain);
         numberRange.clear();
-        for(int i=0;i<3;i++){
+        for(int i=0;i<NUM_COUNT;i++){
             numberRange.add(remain[i]);
         }
     }

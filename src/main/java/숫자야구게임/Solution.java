@@ -1,29 +1,31 @@
 package 숫자야구게임;
 
 import java.util.Scanner;
+import static 숫자야구게임.PlayerFrame.NUM_COUNT;
 
 public class Solution {
-    Computer computer;
-    User user;
-    enum Who{
+    private Computer computer;
+    private User user;
+    private Scanner scan=new Scanner(System.in);
+    private enum Who{
         USER,
         COMPUTER
     }
-    enum Status{
+    private enum Status{
         STRIKE,
         BALL,
         OUT
     }
-    
-    public void setGuessStatus(int statusIndex, int who){
+
+    private void setGuessStatus(int statusIndex, int who){
         if(who==Who.USER.ordinal()){
             user.setStatus(statusIndex);
         }else{
             computer.setStatus(statusIndex);
         }
     }
-    
-    public boolean getOutResult(int []guess, int guessIndex, int[]target, int targetIndex, int who){
+
+    private boolean getOutResult(int []guess, int guessIndex, int[]target, int targetIndex, int who){
         if(guess[guessIndex]==target[targetIndex]){
             if(guessIndex==targetIndex){
                 setGuessStatus(Status.STRIKE.ordinal(), who);
@@ -35,10 +37,10 @@ public class Solution {
         return true;
     }
 
-    public void findAns(int[] guess, int [] target, int who){
+    private void findAns(int[] guess, int [] target, int who){
         boolean isOut=true;
-        for(int guessIndex=0;guessIndex<3;guessIndex++){
-            for(int targetIndex=0;targetIndex<3;targetIndex++){
+        for(int guessIndex=0;guessIndex<NUM_COUNT;guessIndex++){
+            for(int targetIndex=0;targetIndex<NUM_COUNT;targetIndex++){
                 isOut=getOutResult(guess, guessIndex, target, targetIndex, who);
                 if(isOut==false){
                     break;
@@ -50,7 +52,7 @@ public class Solution {
         }
     }
 
-    public void printStatus(int[] state){
+    private void printStatus(int[] state){
         if(state[Status.STRIKE.ordinal()]>0){
             System.out.print(state[Status.STRIKE.ordinal()]+"스트라이크 ");
         }
@@ -63,29 +65,17 @@ public class Solution {
         System.out.println("\n");
     }
 
-    public boolean isFinish(int who){
+    private boolean printResult(int[] state, int who){
         int choice;
-        int[] state=new int[3];
-        if(who==Who.USER.ordinal()){
-            state=user.getStatus();
-        }else if(who==Who.COMPUTER.ordinal()){
-            state=computer.getStatus();
-        }
-
-        Scanner scan=new Scanner(System.in);
-        printStatus(state);
-
-        if(state[Status.STRIKE.ordinal()]==3){
+        if(state[Status.STRIKE.ordinal()]==NUM_COUNT){
             if(who==Who.USER.ordinal()){
                 System.out.println("<승리!> 3개의 숫자를 모두 맞히셨습니다! 게임종료\n");
 
             }else if(who==Who.COMPUTER.ordinal()){
                 System.out.println("<패배ㅠ> 컴퓨터가 먼저 사용자의 숫자를 모두 맞혔습니다.");
             }
-
             System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
             choice=scan.nextInt();
-
             if(choice==2){
                 System.out.println("게임을 종료합니다.\n");
                 return true;
@@ -96,22 +86,32 @@ public class Solution {
         return false;
     }
 
-    public boolean userTurn(){
+    private boolean isFinish(int who){
+
+        int[] state=new int[NUM_COUNT];
+        if(who==Who.USER.ordinal()){
+            state=user.getStatus();
+        }else if(who==Who.COMPUTER.ordinal()){
+            state=computer.getStatus();
+        }
+        printStatus(state);
+        return printResult(state, who);
+    }
+
+    private boolean userTurn(){
         user.setGuess();
         findAns(user.getGuess(), computer.getOwnNumber(), Who.USER.ordinal());
         return isFinish(Who.USER.ordinal());
     }
 
-    public boolean computerTurn(){
+    private boolean computerTurn(){
         computer.setGuess();
         findAns(computer.getGuess(), user.getOwnNumber(), Who.COMPUTER.ordinal());
         int[] status=computer.getStatus();
-        if(status[Status.OUT.ordinal()]==3){
+        if(status[Status.OUT.ordinal()]==NUM_COUNT){
             computer.removeAllGuess();
         }else if(status[Status.OUT.ordinal()]==0){
-            if(computer.numberRange.size()>3){
                 computer.removeOthers();
-            }
         }
         return isFinish(Who.COMPUTER.ordinal());
     }
